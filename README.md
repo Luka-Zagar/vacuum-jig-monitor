@@ -2,7 +2,7 @@
 
 Proof-of-concept pressure monitor for a vacuum (suction) jig. An Arduino Nano
 reads a XIDIBEI XDB401 pressure transducer and streams the jig pressure to the
-Arduino IDE Serial Plotter, so a correctly seated, airtight part can be told
+Arduino IDE Serial Terminal and Serial Plotter, so a correctly seated, airtight part can be told
 apart from a misplaced, leaking one.
 
 Pressure is reported on an absolute-style scale: **atmosphere = 1.000 bar**,
@@ -24,8 +24,8 @@ Pressure is reported on an absolute-style scale: **atmosphere = 1.000 bar**,
 | OUT (signal) | `A6` |
 
 The sensor and the ADC share the Nano's 5 V rail, so the measurement is
-ratiometric and insensitive to USB supply variation. For installation on a
-machine, add a 1 kΩ series resistor and a 100 nF capacitor to GND at `A6`.
+ratiometric and insensitive to USB supply variation. To improve reliability and stability in a noisy environment (installation on a
+machine), add a 1 kΩ series resistor and a 100 nF capacitor to GND at `A6`.
 
 ## Building and uploading
 
@@ -100,14 +100,6 @@ All tunable parameters are in the `Config` namespace at the top of the sketch.
 - Accuracy is ±1 % FS (about ±80 mbar). Pass/fail thresholds should be set
   empirically from measurements of good and misplaced parts, which depends on
   repeatability rather than absolute accuracy.
-- For a production version, use the same sensor in a vacuum (−1…0 bar) or
-  compound (−1…+1 bar) range.
-
-## Roadmap
-
-- [ ] Record pressure and settling time for seated, misplaced and missing parts
-- [ ] Add OK / NOK decision with threshold, hysteresis, dwell time and timeout
-- [ ] Add OK / NOK indicator output (LED or PLC input)
 
 ## License
 
