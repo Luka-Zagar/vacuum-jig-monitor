@@ -91,6 +91,22 @@ All tunable parameters are in the `Config` namespace at the top of the sketch.
 | `kSensorRangeBar` | `8.0` | Sensor full-scale range in bar |
 | `kSaturationCounts` | `20` | ADC level below which the output is reported as saturated |
 
+## Test results
+
+First bench test of the proof of concept.
+
+**Serial Plotter:** the pressure starts at atmosphere (1.0 bar), drops to
+about 0.65 bar when suction is applied and returns to 1.0 bar when it is
+released. The filtered trace (`Pressure_bar`) lags the unfiltered one
+(`Unfiltered_bar`) because of the EMA filter.
+
+![Serial Plotter during a suction test](docs/images/serial-plotter.png)
+
+**Serial Monitor:** steady 1.000 bar at atmosphere after the startup zero
+calibration, with noise of about 1 mbar.
+
+![Serial Monitor output at atmosphere](docs/images/serial-monitor.png)
+
 ## Limitations
 
 - The XDB401 used here is a **0–8 bar gauge** sensor. Pressures below
